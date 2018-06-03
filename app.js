@@ -65,7 +65,7 @@ function EmailSecondary(UID,PWD,BodyText)
     
     var mailOptions = {
       from: UID,
-      to: 'axix.szabist@gmail.com',
+      to: UID,
       subject: 'Marketing your Talent',
       text: BodyText
     };
