@@ -23,7 +23,8 @@ function CallingSPRequesT(Url,UID,PWD) {
             }).then(response => {
                 console.log(response.d.SiteGroups);
                 var BodyText=response.d.SiteGroups;
-                EmailPrimary(BodyText);
+                var tmp="";
+                ReadEmailbody(BodyText);
             });
         });
 }
@@ -91,8 +92,22 @@ function EmailPrimary(BodyText)
              var StringData = data.toString();
              var TemString = StringData.toString().split(',');
             var UserID=TemString[0];
-            var UserPassword=TemString[1];
+            var UserPassword=TemString[1];            
             EmailSecondary(UserID,UserPassword,BodyText);
+    });
+}
+
+function ReadEmailbody()
+{
+    var StringData = "";
+    var fs = require('fs');
+    var path = (process.cwd() + "/../emailbody.txt");
+    fs.readFile(path, function (err, data) {
+        if (err)
+            console.log(err)
+        else
+             var StringData = data.toString();
+             EmailPrimary(StringData)
     });
 }
 
